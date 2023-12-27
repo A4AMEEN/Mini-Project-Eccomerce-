@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+</head>
+    <style>
+        body {
+            background-image: url('/images/login.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tab-pane.active {
+            background-color: rgb(223, 209, 209);
+            color: white;
+        }
+
+        .container {
+            
+            border-radius: 100rem; /* Add border-radius for the container */
+        }
+
+        .modal-content {
+            background-color: black;
+            color: white;
+        }
+
+        /* Sidebar styles */
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f2f2f2;
+        }
+        .table-bordered tbody tr {
+    border: 2px solid yellow; /* Set the border style and color */
+}
+
+/* Style for table cells (td) */
+.table-bordered td {
+    border-radius: 109px;
+    border: 2px solid yellow; /* Set the border style and color */
+    padding: 10px; /* Add some padding for better visual appearance */
+}
+    </style>
+
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide">Aqumex</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="sales-report" class="active" data-="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Dashboard</span>
+          </a>
+        </li>
+        <li class="" data-tooltip="1">
+          <a href="users" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">USERS</span>
+          </a>
+        </li>
+        <li class="active-tab" data-tooltip="2">
+          <a href="product" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">PRODUCTS</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="orders" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <li class="tooltip-element" data-tooltip="0">
+            <a href="adminCatagory" data-active="4">
+              <div class="icon">
+                <i class='bx bx-notepad'></i>
+                <i class='bx bxs-notepad'></i>
+              </div>
+              <span class="link hide">Catagories</span>
+            </a>
+          </li>
+          <li class="tooltip-element" data-tooltip="0">
+            <a href="brand" data-active="4">
+              <div class="icon">
+                <i class='bx bx-notepad'></i>
+                <i class='bx bxs-notepad'></i>
+              </div>
+              <span class="link hide">Brands</span>
+            </a>
+          </li>
+          <li class="history" data-tooltip="1">
+            <a href="history" data-active="5">
+              <div class="icon">
+                <i class='bx bx-help-circle'></i>
+                <i class='bx bxs-help-circle'></i>
+              </div>
+              <span class="link hide">OrderHistory</span>
+            </a>
+          </li>
+          <li class="tooltip-element" data-tooltip="2">
+            <a href="coupon" data-active="6">
+              <div class="icon">
+                <i class='bx bx-cog'></i>
+                <i class='bx bxs-cog'></i>
+              </div>
+              <span class="link hide">Coupons</span>
+            </a>
+          </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="logout" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <div class="container mt-4"></div>
+    <h1>My Dashboard</h1>
+    <div class="tab-pane active" id="products">
+        <div class="container mt-4">
+            <!-- Add product-related content here -->
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Item No</th>
+                        <th>Images</th>
+                        <th>Product Name</th>
+                        <th>Brands</th>
+                        <th>Price</th>
+                        <th>Offered Price</th>
+                        <th>Stocks</th>
+                        <th>Catagory</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+
+                <a href="addProduct" class="btn btn-success" id="openProductModal">
+                    ADD Product
+                </a>
+                
+                <tbody>
+
+                    <!-- Add your product rows here as table rows -->
+                    <% products.forEach((product, index)=>{ %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <% console.log(product.images) %>
+                                <img src="/images/<%= product.images[0] %>" alt="" width="120px" height="150px">
+                            <td>
+                                <%= product.name %>
+                            </td>
+                            <td>
+                                <%= product.brand %>
+                            </td>
+                            <td>
+                                <%= product.price %>&#8377 
+                            </td>
+                            <td>
+                              <%= product.discount %>&#8377 
+                          </td>
+                            <td>
+                                <%= product.stocks %>
+                            </td>
+                            <td>
+                                <%=product.catagory %>
+                            </td>
+                            <td>
+                              <a href="/admin/delete/<%= product._id %>" class="btn btn-danger" onclick="return confirmDelete();">
+                                  Delete
+                              </a>
+                          </td>
+                          
+                          <script>
+                              function confirmDelete() {
+                                  // Display a confirmation dialog
+                                  var confirmation = confirm("Are you sure you want to delete this item?");
+                                  
+                                  // If user confirms, proceed with deletion
+                                  if (confirmation) {
+                                      return true; // Continue with the deletion action
+                                  } else {
+                                      return false; // Cancel the deletion action
+                                  }
+                              }
+                          </script>
+                          
+                            <td>
+                                <a href="/admin/edit/<%= product._id %>" class="btn btn-danger">
+                                    Edit
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% }) %>
+                            <!-- Add more rows as needed -->
+                </tbody>
+                <style>
+                  .pagination {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  }
+                
+                  .pagination a {
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: 1px solid #ccc;
+                    text-align: center;
+                    line-height: 30px;
+                    margin: 0 5px;
+                    text-decoration: none;
+                  }
+                
+                  .pagination a.active {
+                    background-color: #007bff;
+                    color: #fff;
+                  }
+                </style>
+                
+                <div class="pagination">
+                  <% for(let i = 1; i <= totalPages; i++) { %>
+                      <a href="?page=<%= i %>" class="<%= currentPage == i ? 'active' : '' %>">
+                          <%= i %>
+                      </a>
+                  <% } %>
+                </div>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+        aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+                <form method="post" action="/admin/home" class="modal-body" enctype="multipart/form-data" style="background-color: white; color: black;">
+                    <!-- Add your product details here -->
+                    <div class="form-group">
+                        <label for="productImage" >Product Image:</label>
+                        <input min="4" multiple type="file" class="form-control-file" name="images" id="productImage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productName" style="color: wheat;">Product Name:</label>
+                        <input type="text" class="form-control" name="name" placeholder="name"
+                            id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="brand" style="color: wheatj">Brand:</label>
+                        <input type="text" class="form-control" name="brand" id="brand" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" style="color: wheat">Price:</label>
+                        <input min="1" type="number" class="form-control" name="price" id="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stocks" style="color: wheat">Stocks:</label>
+                        <input min="1" type="number" class="form-control" name="stock1" id="stocks" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" style="color: wheat">Catagory:</label>
+                        <select name="catagory" id="catagory" class="form-control" required>
+                          <option value="Casuals">Casuals</option>
+                          <option value="Formals">Formals</option>
+                          <option value="Offroads">Offroads</option>
+                          <option value="Spikes">Spikes</option>
+                          <option value="Boots">Boots</option>
+                        </select>
+                      </div>
+                      
+                    <button type="submit" class="btn btn-secondary">Add Product</button>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- You can add an "Add" button here if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // When the "ADD Product" button is clicked
+            $("#openProductModal").on("click", function () {
+                // Append the modal HTML to the body
+                $("body").append(`
+                    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+                        aria-labelledby="productModalLabel" aria-hidden="true">
+                        <!-- Modal content goes here -->
+                    </div>
+                `);
+    
+                // Show the modal
+                $("#productModal").modal("show");
+            });
+        });
+    </script>
+    
+    
+    
+    
+  </main>
+    
+
+ 
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI/tZ1iYU3pLjaUqZs3MBMxhTGrM4Ogqcy7RSqJZ8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-hSMmcPkEG/mI5C5G0Qix7X5zbL1NQ8pU8JiXbQQusuAkiqloTpgXQES5Df5Q9OUP"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

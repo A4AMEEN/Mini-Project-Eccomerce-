@@ -1,0 +1,36 @@
+<div class="tab-content mt-3">
+    <!-- Users category -->
+    <div class="tab-pane" id="users">
+        <!-- Table to display user information -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email (Gmail)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach((user)=>{ %>
+                    <tr>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <% if(!user.isblocked){ %>
+                                <a href="/admin/block/<%= user._id %>"><button
+                                        class="btn btn-danger">Block</button></a>
+                                <% } else if (user.isblocked) { %>
+                                    <a href="/admin/unblock/<%= user._id %>"><button
+                                            class="btn btn-success">Unblock</button></a>
+                                    <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <!-- Add more rows for other users -->
+                            </tbody>
+                        </table>;
+                    </div>;

@@ -1,0 +1,415 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>FootwearZ</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Ion Icon Fonts-->
+	<link rel="stylesheet" href="css/ionicons.min.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+        /* Style for the container */
+        .order-container {
+            border: 100px solid #ccc;
+            padding: 4px;
+            width: 50px; /* Adjust the width as needed */
+            position: absolute;
+            top: 10px; /* Adjust the top position as needed */
+            right: 40px; /* Adjust the right position to place it in the top right corner */
+        }
+		/* Your CSS file or style section in the HTML file */
+strong {
+    font-weight: bold;
+    color: #FF5733; /* Choose your preferred text color */
+    /* Add any other desired styling here */
+}
+
+    </style>
+	<style>
+        .container {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-top: 1px;
+  }
+
+  /* Card Styles */
+  .card {
+    border: none; /* Remove card borders */
+  }
+
+  /* Item Styles */
+  .card-body {
+    background-color: #ffffff; /* White background for each item */
+    margin-bottom: 2px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+  }
+
+  /* Quantity Controls Styles */
+  .input-group {
+    width: 100%;
+  }
+
+  /* Checkout Button Styles */
+  .btn-dark {
+    background-color: #343a40; /* Dark background color for checkout button */
+    color: #ffffff; /* Text color for checkout button */
+    border: none;
+  }
+
+  /* Empty Cart Message Styles */
+  .empty-cart-msg {
+    text-align: center;
+    font-size: 18px;
+    color: #868e96; /* Gray color for empty cart message */
+    margin-top: 20px;
+  }
+    </style>
+
+	</head>
+	
+	<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-7 col-md-9">
+							<div id="colorlib-logo"><a href="index">FootwearZ</a></div>
+						</div>
+						
+		         </div>
+					<div class="row">
+						<div class="col-sm-1200 text-left menu-1">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li class="">
+									<a href="men">SHOP</a>
+									<li><a href="">ABOUT</a></li>
+									<li><a href="/">WishList</a></li>
+									
+						</div>
+						<div class="col-sm-12 text-right menu-1">
+							<ul>
+								<li><a href="profile">Profile</a></li>
+								<li class="cart"><a href="/Wallet"><i class="fas fa-wallet"></i> Wallet[₹<%= walletBalance %>]</a></li>
+									<li><a href="detail">Orders</a></li>
+									
+									
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</nav>
+	
+
+
+        <!-- <div class="breadcrumbs-two">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="breadcrumbs-img" style="background-image: url(images/cover-img-1.jpg);">
+							<h2>Sports's</h2>
+						</div>
+						<div class="menu text-center">
+							<p><a href="#">New Arrivals</a> <a href="#">Best Sellers</a> <a href="#">Extended Widths</a> <a href="#">Sale</a></p>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="container py-5">
+            <div class="row justify-content-center my-4">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            
+                        </div>
+                        <% if (userCart && userCart.Cart && userCart.Cart.items.length > 0) { %>
+                            <% userCart.Cart.items.forEach(item => { %>
+                        <div class="card-body">
+                            <!-- Single item -->
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                    <!-- Image -->
+                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                        <img src="/images/<%= item.images[0] %>" class="w-100" alt="" />
+                                        <a href="#!">
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                        </a>
+                                    </div>
+                                    <!-- Image -->
+                                </div>
+                               
+                                
+                               <div class="product-item col-lg-5 col-md-6 mb-4 mb-lg-0">
+    <!-- Data -->
+    <p><strong><%= item.productName %></strong></p>
+    <p>Brand: Nikes</p>
+    <p>Total Price: <%= item.price * item.quantity %></p>
+
+    <!-- Quantity Controls -->
+    <div class="quantity-controls input-group">
+        <input type="hidden" name="productId" value="<%= item.productId %>">
+        <input type="hidden" name="userId" value="<%= _id %>">
+
+        <!-- Decrease quantity button -->
+        <button class="btn btn-danger adjust-quantity" data-adjust="subtract">-</button>
+
+        <!-- Quantity input -->
+        <input type="number" class="form-control input-number text-center" name="quantity" value="<%= item.quantity %>" data-product-id="<%= item.productId %>" disabled>
+
+        <!-- Increase quantity button -->
+        <button class="btn btn-success adjust-quantity" data-adjust="add">+</button>
+		<div class="error-message text-danger"></div>
+</div>
+    </div>
+</div>
+
+									
+									<!-- Include jQuery library -->
+									<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+									
+									<script>
+									$(document).ready(function() {
+    $('.adjust-quantity').on('click', function(event) {
+        const adjust = $(this).data('adjust');
+        const productId = $(this).siblings('input[name="productId"]').val();
+        const quantityInput = $(this).siblings('input[name="quantity"]');
+        const currentStock = parseInt('<%= item.stocks %>'); // Get the available stock
+        let currentQuantity = parseInt(quantityInput.val() || '0');
+
+        if (adjust === 'add') {
+            if (currentQuantity < currentStock) {
+                currentQuantity += 1;
+            } else {
+                // Display error message if trying to exceed stock limit
+                $('.error-message').text('Stock exceeded!'); // Show error message
+                return; // Prevent further execution
+            }
+        } else if (adjust === 'subtract' && currentQuantity > 1) {
+            // Clear error message if quantity is within limits
+            $('.error-message').text('');
+            currentQuantity -= 1;
+        }
+
+        quantityInput.val(currentQuantity);
+
+        // AJAX request to update quantity without page refresh
+        $.ajax({
+            url: '/close/' + productId,
+            method: 'POST',
+            data: { productId, adjust },
+            success: function(response) {
+                // Update total price or perform other actions upon success
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+
+									</script>
+                            
+                            <div class="row">
+								<a href="/remove/<%= item._id %>">
+									<button type="button" class="btn btn-primary btn-sm me-1 mb-2 remove-item" 
+											data-product-id="<%= item.productId %>" 
+											data-mdb-toggle="tooltip" title="Remove item">
+										<i class="fas fa-trash"></i> Remove
+									</button>
+								</a>
+                                   
+                                  
+                                    
+                                </div>
+                                <% }) %>
+                                <a href="/delivery" class="btn success btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</a>
+
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="3">Your cart is empty.</td>
+                                    </tr>
+                                <% } %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+
+		<div class="colorlib-partner">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+						<h2>Trusted Partners</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col partner-col text-center">
+						<img src="images/brand-1.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-2.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-3.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-4.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer id="colorlib-footer" role="contentinfo">
+			<div class="container">
+				<div class="row row-pb-md">
+					<div class="col footer-col colorlib-widget">
+						<h4>About Footwear</h4>
+						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+						<p>
+							<ul class="colorlib-social-icons">
+								<li><a href="#"><i class="icon-twitter"></i></a></li>
+								<li><a href="#"><i class="icon-facebook"></i></a></li>
+								<li><a href="#"><i class="icon-linkedin"></i></a></li>
+								<li><a href="#"><i class="icon-dribbble"></i></a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col footer-col colorlib-widget">
+						<h4>Customer Care</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="#">Contact</a></li>
+								<li><a href="#">Returns/Exchange</a></li>
+								<li><a href="#">Gift Voucher</a></li>
+								<li><a href="#">Wishlist</a></li>
+								<li><a href="#">Special</a></li>
+								<li><a href="#">Customer Services</a></li>
+								<li><a href="#">Site maps</a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col footer-col colorlib-widget">
+						<h4>Information</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Delivery Information</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Support</a></li>
+								<li><a href="#">Order Tracking</a></li>
+							</ul>
+						</p>
+					</div>
+
+					<div class="col footer-col">
+						<h4>News</h4>
+						<ul class="colorlib-footer-links">
+							<li><a href="blog">Blog</a></li>
+							<li><a href="#">Press</a></li>
+							<li><a href="#">Exhibitions</a></li>
+						</ul>
+					</div>
+
+					<h3>Contact Information</h3>
+						<div class="row contact-info-wrap">
+							<div class="col-md-3">
+								<p><span><i class="icon-location"></i></span> Kerala Trivandrum, <br> India,Kerala</p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-phone3"></i></span> <a href="tel://123456">+91 6282731112</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-globe"></i></span> <a href="#">alameenmail07@gmail.com</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			<div class="copy">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<p>
+							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |Al-Ameen Mini-Project <i class="icon-heart" aria-hidden="true"></i> by <a href="alameenmail07@gmail.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
+							<span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">ameen.com</a></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+   <!-- popper -->
+   <script src="js/popper.min.js"></script>
+   <!-- bootstrap 4.1 -->
+   <script src="js/bootstrap.min.js"></script>
+   <!-- jQuery easing -->
+   <script src="js/jquery.easing.1.3.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
+

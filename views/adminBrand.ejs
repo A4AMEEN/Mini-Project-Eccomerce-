@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+</head>
+<style>
+    .add-category-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white;
+      background-color: green;
+      border-radius: 5px;
+    }
+
+    .add-category-btn:hover {
+      background-color: darkgreen;
+    }
+  </style>
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide">Aqumex</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="sales-report" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">DashBoards</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="users" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">USERS</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="product" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">PRODUCTS</span>
+          </a>
+        </li>
+        <li class="" data-tooltip="3">
+          <a href="orders" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="active-tab" data-tooltip="0">
+          <a href="adminCatagory" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Catagory</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="coupon" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Coupons</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <h1>Add a New Brand</h1>
+    <form action="addBrand" method="POST">
+        <label for="brandName">Brand Name:</label>
+        <input type="text" id="brandName" name="brandName" required>
+        <p><%= error %></p>
+        <p class="error-message" style="color: red; display: none;">Enter a valid brand name </p>
+        <!-- You can add more fields for other brand information here -->
+        <button type="submit" onclick="validateBrandName()">Add Brand</button>
+    </form>
+   
+    <div id="errorMessage" style="display: none; color: red;">
+        <%= error %>
+    </div>
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% brands.forEach(brand => { %>
+                <tr>
+                    <td><%= brand.brandName %></td>
+                    <td>
+                        <!-- Form for deleting a brand -->
+                        <form action="deleteBrand" method="POST">
+                            <input type="hidden" name="brandId" value="<%= brand._id %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <!-- Form for updating a brand -->
+                        <form class="update-form" action="updateBrand" method="POST" onsubmit="return validateInput(this);">
+                            <input type="hidden" name="brandId" value="<%= brand._id %>">
+                            <button type="button" onclick="showInput(this)">Update</button>
+                            <input type="text" class="update-input" name="updatedBrandName" value="<%= brand.brandName %>" style="display: none;">
+                            <button type="submit" class="submit-update" style="display: none;">Save</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    
+  
+</main>
+<style>
+     table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 2px solid #000; /* Border for the whole table */
+        }
+
+        th, td {
+            border: 1px solid #000; /* Border for table cells */
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</style>
+<style>
+  .category-table {
+    border: 1px solid #ccc;
+    padding: 20px;
+    /* Add any other styles for the entire table here */
+}
+
+.category-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Add specific styles for each row/item here */
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    /* Add any other styles for the delete button here */
+}
+.update-btn {
+    background-color: rgb(187, 255, 0);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    /* Add any other styles for the delete button here */
+}
+
+
+</style>
+<script>
+    function validateBrandName() {
+        const brandInput = document.getElementById('brandName');
+        const errorMessage = document.querySelector('.error-message');
+        
+        if (!brandInput.value.trim()) {
+            errorMessage.style.display = 'inline'; // Show error message
+            event.preventDefault(); // Prevent form submission if validation fails
+        } else {
+            errorMessage.style.display = 'none'; // Hide error message if input is valid
+        }
+    }
+</script>
+<script>
+    function validateCategoryName() {
+        const categoryName = document.getElementById('categoryNameInput').value.trim();
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (categoryName === '') {
+            errorMessage.style.display = 'block'; // Show error message
+            return false; // Prevent form submission
+        }
+
+        errorMessage.style.display = 'none'; // Hide error message if category name is not empty
+        return true; // Allow form submission
+    }
+</script>
+<script>
+    function showInput(button) {
+        const form = button.parentElement;
+        const inputField = form.querySelector('.update-input');
+        const saveButton = form.querySelector('.submit-update');
+
+        inputField.style.display = 'inline-block'; // Show the input field
+        saveButton.style.display = 'inline-block'; // Show the Save button
+        button.style.display = 'none'; // Hide the Update button
+
+        const brandName = button.parentElement.previousElementSibling.textContent.trim();
+        inputField.value = brandName; // Set the current brand name as the input value
+    }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const updateButtons = document.querySelectorAll('.update-btn');
+
+    updateButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const listItem = button.closest('.category-item');
+            const categoryName = listItem.querySelector('.category-name');
+            const editInput = listItem.querySelector('.edit-input');
+            const saveButton = listItem.querySelector('.save-btn');
+
+            categoryName.style.display = 'none';
+            editInput.style.display = 'inline-block';
+            saveButton.style.display = 'inline-block';
+
+            editInput.value = categoryName.textContent;
+        });
+
+    });
+});
+
+</script>
+<script>
+    function validateInput(form) {
+        const updatedBrandName = form.updatedBrandName.value.trim();
+        if (updatedBrandName === '') {
+            alert('Brand name cannot be empty');
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+
+    function showInput(button) {
+        const form = button.parentElement;
+        const inputField = form.querySelector('.update-input');
+        const saveButton = form.querySelector('.submit-update');
+
+        inputField.style.display = 'inline-block'; // Show the input field
+        saveButton.style.display = 'inline-block'; // Show the Save button
+        button.style.display = 'none'; // Hide the Update button
+    }
+</script>
+<script>
+    function showInput(button) {
+        const form = button.parentElement;
+        const inputField = form.querySelector('.update-input');
+        const saveButton = form.querySelector('.submit-update');
+        const errorMessage = document.getElementById('errorMessage');
+
+        inputField.style.display = 'inline-block'; // Show the input field
+        saveButton.style.display = 'inline-block'; // Show the Save button
+        button.style.display = 'none'; // Hide the Update button
+
+        // Check for duplicate names here and show the error message accordingly
+        // This could involve an AJAX request to the server to check the name
+
+        errorMessage.style.display = 'block'; // Show the error message
+    }
+</script>
+
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide">Aqumex</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class="active-tab"></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="users" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">DashBoards</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="users" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">USERS</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="product" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">PRODUCTS</span>
+          </a>
+        </li>
+        <li class="" data-tooltip="3">
+          <a href="orders" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="adminCatagory" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Catagories</span>
+          </a>
+        </li>
+        <li class="history" data-tooltip="1">
+          <a href="history" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">OrderHistory</span>
+          </a>
+        </li>
+        <li class="history" data-tooltip="1">
+          <a href="sales-report" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Report</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="coupon" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Coupons</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="logout" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <select id="filterType">
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="yearly">Yearly</option>
+    </select>
+    
+    <button onclick="applyFilters()">Apply Filters</button>
+    
+    <div id="dailyChartContainer" style="display: none;">
+        <h2>Daily Orders</h2>
+        <canvas id="dailyOrdersChart" width="1000" height="400"></canvas>
+    </div>
+    
+    <div id="weeklyChartContainer" style="display: block;">
+        <h2>Weekly Orders</h2>
+        <canvas id="weeklyOrdersChart" width="1000" height="400"></canvas>
+    </div>
+    
+    <div id="monthlyChartContainer" style="display: none;">
+        <h2>Monthly Orders</h2>
+        <canvas id="monthlyOrdersChart"></canvas>
+    </div>
+    
+    <div id="yearlyChartContainer" style="display: none;">
+        <h2>Yearly Orders</h2>
+        <canvas id="yearlyOrdersChart"></canvas>
+    </div>
+    
+
+
+  
+
+    <script>
+        const dailyCount = <%= dailyCount %>;
+        const weeklyCountsByDay = <%= JSON.stringify(weeklyCountsByDay) %>;
+        const monthlyCount = <%= monthlyCount %>;
+        const yearlyCount = <%= yearlyCount %>;
+
+
+        const ctxDaily = document.getElementById('dailyOrdersChart').getContext('2d');
+        const dailyOrdersChart = new Chart(ctxDaily, {
+            type: 'bar',
+            data: {
+                labels: ['Daily'],
+                datasets: [{
+                    label: 'Orders',
+                    data: [dailyCount],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxWeekly = document.getElementById('weeklyOrdersChart').getContext('2d');
+        const weeklyOrdersChart = new Chart(ctxWeekly, {
+            type: 'bar',
+            data: {
+                labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                datasets: [{
+                    label: 'Orders',
+                    data: weeklyCountsByDay,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxMonthly = document.getElementById('monthlyOrdersChart').getContext('2d');
+        const monthlyOrdersChart = new Chart(ctxMonthly, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Orders',
+                    data: ['0','0','0','0','0','0','0','0','0','0','38',monthlyCount],
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxYearly = document.getElementById('yearlyOrdersChart').getContext('2d');
+        const yearlyOrdersChart = new Chart(ctxYearly, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023'],
+                datasets: [{
+                    label: 'Orders',
+                    data: ['0','0','0', yearlyCount],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxWeeklyByDay = document.getElementById('weeklyOrdersByDayChart').getContext('2d');
+        const weeklyOrdersByDayChart = new Chart(ctxWeeklyByDay, {
+            type: 'line',
+            data: {
+                labels: weeklyOrdersByDayJSON.days,
+                datasets: [{
+                    label: 'Orders',
+                    data: weeklyOrdersByDayJSON.orders,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        function filterDailyOrders(newCount) {
+            dailyOrdersChart.data.datasets[0].data = [newCount];
+            dailyOrdersChart.update();
+        }
+
+        function filterWeeklyOrders(newCountsByDay) {
+            weeklyOrdersChart.data.datasets[0].data = newCountsByDay;
+            weeklyOrdersChart.update();
+        }
+
+        function filterMonthlyOrders(newMonthlyCount) {
+            monthlyOrdersChart.data.datasets[0].data[11] = newMonthlyCount; // Assuming index 11 represents December
+            monthlyOrdersChart.update();
+        }
+
+        function filterYearlyOrders(newYearlyCount) {
+            yearlyOrdersChart.data.datasets[0].data[3] = newYearlyCount; // Assuming index 3 represents 2023
+            yearlyOrdersChart.update();
+        }
+
+        function applyFilters() {
+            // Get the new values for filtering (example values)
+            const newDailyCount = dailyCount;
+            const newWeeklyCountsByDay = [weeklyCountsByDay];
+            const newMonthlyCount = monthlyCount;
+            const newYearlyCount = yearlyCount;
+
+            // Apply filters using the new values
+            filterDailyOrders(newDailyCount);
+            filterWeeklyOrders(newWeeklyCountsByDay);
+            filterMonthlyOrders(newMonthlyCount);
+            filterYearlyOrders(newYearlyCount);
+        }
+        
+    function applyFilters() {
+        const filterType = document.getElementById('filterType').value;
+
+        // Hide all chart containers
+        document.getElementById('dailyChartContainer').style.display = 'none';
+        document.getElementById('weeklyChartContainer').style.display = 'none';
+        document.getElementById('monthlyChartContainer').style.display = 'none';
+        document.getElementById('yearlyChartContainer').style.display = 'none';
+
+        // Show the selected chart container based on the filter type
+        if (filterType === 'daily') {
+            document.getElementById('dailyChartContainer').style.display = 'block';
+            // Call function to update the daily chart if needed
+        } else if (filterType === 'weekly') {
+            document.getElementById('weeklyChartContainer').style.display = 'block';
+            // Call function to update the weekly chart if needed
+        } else if (filterType === 'monthly') {
+            document.getElementById('monthlyChartContainer').style.display = 'block';
+            // Call function to update the monthly chart if needed
+        } else if (filterType === 'yearly') {
+            document.getElementById('yearlyChartContainer').style.display = 'block';
+            // Call function to update the yearly chart if needed
+        }
+    }
+
+    </script>
+    </script>
+</body>
+
+</html>

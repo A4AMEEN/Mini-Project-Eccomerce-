@@ -1,0 +1,11 @@
+:root {
+    --primary: rgba(184, 142, 47, 1);
+    --color-light-bg: rgba(244, 245, 247, 1);
+    --color-gray-1: rgba(58, 58, 58, 1);
+    --color-gray-3: rgba(137, 137, 137, 1);
+    --color-white: rgba(255, 255, 255, 1);
+    --color-gray-4: rgba(176, 176, 176, 1);
+    --color-red-accents: rgba(233, 113, 113, 1);
+    --color-green-accents: rgba(46, 193, 172, 1);
+  }
+  

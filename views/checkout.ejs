@@ -1,0 +1,484 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>FootwearZ</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Ion Icon Fonts-->
+	<link rel="stylesheet" href="css/ionicons.min.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+        /* Style for the container */
+        .order-container {
+            border: 10px solid #ccc;
+            padding: 4px;
+            width: 500px; /* Adjust the width as needed */
+            position: absolute;
+            top: 10px; /* Adjust the top position as needed */
+            right: 40px; /* Adjust the right position to place it in the top right corner */
+        }
+		/* Style the "Proceed to Order" button */
+.btn-dark.btn-block.btn-lg {
+  background-color: green;
+  border-color: green;
+}
+
+  .order-container {
+    /* Adjust height and width as needed */
+    height: 500px;
+    width: 40%;
+    /* You can also add other styles like padding, margin, etc. */
+    padding: 30px;
+    /* Add overflow properties if content exceeds container size */
+    overflow: auto; /* or scroll, hidden, etc. */
+  }
+
+
+.btn-dark.btn-block.btn-lg:hover {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+/* Add a margin between the cart items and the checkout section */
+.order-container {
+  margin-top: 20px; /* Adjust this value as needed for spacing */
+}
+
+		/* Your CSS file or style section in the HTML file */
+strong {
+    font-weight: bold;
+    color: #FF5733; /* Choose your preferred text color */
+    /* Add any other desired styling here */
+}
+/* Truncate the address and show ellipsis */
+select option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tooltip style */
+select option:hover::before {
+  content: attr(title);
+  display: block;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1;
+  /* Additional styling for tooltip position */
+  /* Adjust these values as needed */
+  top: calc(100% + 5px);
+  left: 0;
+  width: max-content;
+}
+/* Styling the select dropdown */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%; /* Adjust width as needed */
+}
+
+/* Styling the dropdown arrow */
+.form-select::after {
+  content: '\25BC'; /* Unicode for down arrow */
+  position: absolute;
+  top: calc(50% - 8px);
+  right: 10px;
+  pointer-events: none;
+}
+
+
+
+    </style>
+
+	</head>
+	
+	<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-7 col-md-9">
+							<div id="colorlib-logo"><a href="index">FootwearZ</a></div>
+						</div>
+						
+		         </div>
+					<div class="row">
+						<div class="col-sm-12 text-left menu-1">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li class="has-dropdown active">
+									<a href="men">Order Placement</a>
+									<a href="profile">Profile</a>
+									<a href="cart">Back to Cart</a>
+									
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</nav>
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="index">Home</a></span> / <span>Checkout</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<% if (userCart && userCart.Cart && userCart.Cart.items.length > 0) { %>
+			<% userCart.Cart.items.forEach(item => { %>
+		<div class="card-body">
+			<!-- Single item -->
+			<div class="row">
+				<div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+					<!-- Image -->
+					<div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+						<img src="/images/<%= item.images[0] %>" class="w-100" alt="" />
+						<a href="#!">
+							<div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+						</a>
+					</div>
+					<!-- Image -->
+				</div>
+			   
+				<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+					<!-- Data -->
+					<p><strong><%= item.productName %></strong></p>
+					<p>Brand: Nike</p>
+					<p>Size: M</p>
+					<p>
+						<strong>Quantity: <%= item.quantity %></strong> 
+						x 
+						<strong>&#8377 <%= item.price %></strong>
+					</p>
+					<% if (item.stockAvailable === false) { %>
+                        <p style="color: red;">Product stock ran out.</p>
+                    <% } %>
+				</div>
+				
+				
+			<!-- Single item -->
+			<hr class="my-4" />
+			<!-- Single item -->
+			<div class="row">
+				<div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+					<!-- Image -->
+				  
+					<!-- Image -->
+				</div>
+				<% }) %>
+				<% } else { %>
+					<tr>
+						<h1><td colspan="3">Your cart is empty.</td></h1>
+					</tr>
+				<% } %> 
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+					
+
+<div class="order-container" style="height: 750px;"  >
+    <h1>Place Your Order</h1>
+
+    <div class="justify-content-center">
+        <div class="">
+            <div class="">
+                <hr class=">
+				<div class="d-flex justify-content-between ">
+					<h5 class="text-uppercase">Coupon Code</h5>
+					<% if (CouponApplied) { %>
+						<p><strong>Coupon Applied</strong></p>
+						<form method="post" action="removecoupon">
+							<button type="submit">Clear Coupon</button>
+						  </form>
+						
+					  <% } else { %>
+						<form id="couponForm" action="/coupon" method="POST">
+							<% if (message) { %>
+								<p class="error-message" style="color: red;"><%= message %></p>
+							  <% } %>
+							  
+						  <input type="text" name="couponCode" id="couponCode" placeholder="Enter coupon code">
+						  <button type="submit" onclick="applyCoupon()" class="btn btn-sm btn-primary">Apply</button>
+						</form>
+						
+					  <% } %>
+<style>
+	.err-message{
+		color: #FF5733;
+	}
+</style>
+
+
+					<script>
+						function applyCoupon() {
+							// Get the form data
+							const formData = new FormData(document.getElementById('couponForm'));
+						
+							// Make an AJAX request
+							fetch('/coupon', {
+								method: 'POST',
+								body: formData
+							})
+							.then(response => {
+								// Handle the response here
+								if (response.ok) {
+									// Coupon applied successfully, handle it accordingly
+									console.log('Coupon applied successfully!');
+									// You can update the UI or perform other actions here
+								} else {
+									// Coupon application failed, handle errors if needed
+									console.error('Failed to apply coupon');
+								}
+							})
+							.catch(error => {
+								// Handle any network errors
+								console.error('Error applying coupon:', error);
+							});
+						}
+						</script>
+						
+				</div>
+                <form id="form" action="/checkout" method="POST">
+                    <% if (userCart && userCart.Cart && userCart.Cart.items.length > 0) { %>
+                        <% userCart.Cart.items.forEach(item => { %>
+                            <input type="hidden" name="userId" value="<%= userCart.userId %>">
+                            <!-- Include other item-related information here -->
+                        <% }); %>
+                    <% } %>
+                    
+					<div class="">
+						<h4>Select an Address</h4>
+						<select name="addressId" class="form-select required" required>
+							<option value="" disabled>Select an Address</option>
+							<% if (addresses.length === 0) { %>
+								<option value="" disabled>No addresses available</option>
+							<% } else { %>
+								<% addresses.forEach(address => { %>
+									<option value="<%= address.id %>"  title="<%= address.state %>, <%= address.district %> <%= address.place %>, <%= address.junction %> Pincode<%= address.pincode %>">
+									O	<%= address.state %>, <%= address.district %> <%= address.place %>... <!-- Truncated address -->
+									</option>
+								<% }); %>
+							<% } %>
+						</select>
+						<% if (addresses.length === 0) { %>
+							<p style="color: red;">Please add an address to proceed with your order.</p>
+						<% } %>
+					</div>
+					
+                    <div class="modal-header">
+                        <button type="button" class="btn btn-primary">
+                            <a href="/addadress" class="modal-title text-white" style="text-decoration: none;">Add Address</a>
+                        </button>
+                    </div>
+              
+					<h5 class="text-uppercase mb-3">Delivery Method</h5>
+					<div class="">
+						<select class="form-select" id="deliveryMethod" name="deliveryMethod">
+							<option value="cashOnDelivery">Cash on Delivery</option>
+							<option value="Wallet" id="walletOption">Wallet [&#8377 <%= userdata.wallet %>]</option>
+							<option value="Razorpay">NetBanking (Razor Pay)</option>
+						</select>
+						<span id="insufficientBalanceError" style="display: none; color: red;">Insufficient balance in your wallet.</span>
+					</div>
+					
+					
+					<hr class="my-4">
+					<div class="d-flex justify-content-between mb-5">
+						
+						<h5 class="text-uppercase">Total Price</h5>
+    <% if (discountPercentage > 0) { %>
+        <h5 id="totalPrice">$<%= calculateTotalPrice(userCart.Cart.items) %></h5>
+        <p>Discount: <%= discountPercentage %>%</p>
+    <% } else { %>
+        <h5 id="totalPrice">$<%= calculateTotalPrice(userCart.Cart.items) %></h5>
+    <% } %>
+					</div>
+					<input type="hidden" name="couponCode" id="couponCode" value="<%= code %>">
+					<button type="button" class="btn btn-dark btn-block btn-lg" id="checkoutButton" data-mdb-ripple-color="dark">Checkout</button>
+					
+
+
+
+
+
+
+					<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+					<script>
+						
+						document.getElementById('checkoutButton').addEventListener('click', function () {
+							console.log("11122233")
+							var selectedMethod = document.getElementById("deliveryMethod")
+							const form = document.getElementById('form');
+							const totalamount1 = document.getElementById("totalPrice").innerHTML.trim()
+						
+							let totalamount = totalamount1.replace('$', ''); // Removes the '$' symbol
+
+
+							
+					
+							if (selectedMethod.value === 'Razorpay') {
+
+								console.log('net')
+
+								fetch('/createorder', {
+								method: 'post',
+								headers: {
+								'Content-Type': 'application/json'
+								},
+								body: JSON.stringify({ totalamount })
+								})
+							.then((response) => response.json())
+							.then((order) => {
+							// if (order.message == 'Out Of Stock') {
+							// 	const stockErrorMessage = document.getElementById('stockErrorMessage');
+							// 	stockErrorMessage.innerHTML =
+							// 	'The selected quantity exceeds the available stock ';
+							// 	const cartLink = document.createElement('a');
+							// 	cartLink.href = '/user/cart';
+							// 	cartLink.textContent = 'Go to Cart';
+							// 	stockErrorMessage.appendChild(cartLink);
+							// } else {
+								const options = {
+								key: 'rzp_test_U3wApGAM5gGpOR',
+								amount: order.order.amount, 
+								currency: 'INR',
+								name: '',
+								description: 'Test Transaction',
+								image: '',
+								order_id: order.order.id,
+								callback_url: '/razorpay',
+								prefill: {
+								},
+								notes: {
+									address: 'Razorpay Corporate Office',
+								},
+								theme: {
+									color: '#3399cc',
+								},
+								};
+
+								const rzp1 = new Razorpay(options);
+								rzp1.open();
+							// }
+								});
+							}
+							else{
+								form.submit();
+							}
+							
+						});
+					
+					</script>
+
+
+
+
+
+
+
+					<script>
+						// Function to check and display error if wallet balance is insufficient
+						function checkWalletBalance() {
+							var totalPrice = parseFloat(document.getElementById('totalPrice').innerText.replace('$', ''));
+							var walletBalance = <%= userdata.wallet %>;// Get the user's wallet balance
+							if (walletBalance < totalPrice) {
+								document.getElementById('insufficientBalanceError').style.display = 'block';
+								document.getElementById('checkoutButton').disabled = true; // Disable checkout button
+							} else {
+								document.getElementById('insufficientBalanceError').style.display = 'none';
+								document.getElementById('checkoutButton').disabled = false; // Enable checkout button
+							}
+						}
+					
+						// Event listener for changing the delivery method
+						document.getElementById('deliveryMethod').addEventListener('change', function () {
+							if (this.value === 'walletPayment') {
+								checkWalletBalance(); // Check balance when the user selects the wallet option
+							} else {
+								document.getElementById('insufficientBalanceError').style.display = 'none';
+								document.getElementById('checkoutButton').disabled = false; // Enable checkout for other payment methods
+							}
+						});
+					</script>
+					
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+	
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+   <!-- popper -->
+   <script src="js/popper.min.js"></script>
+   <!-- bootstrap 4.1 -->
+   <script src="js/bootstrap.min.js"></script>
+   <!-- jQuery easing -->
+   <script src="js/jquery.easing.1.3.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
+

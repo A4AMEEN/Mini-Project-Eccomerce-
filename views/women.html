@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+</head>
+<style>
+    .add-category-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white;
+      background-color: green;
+      border-radius: 5px;
+    }
+
+    .add-category-btn:hover {
+      background-color: darkgreen;
+    }
+  </style>
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide">Aqumex</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="users" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">DashBoards</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="users" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">USERS</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="product" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">PRODUCTS</span>
+          </a>
+        </li>
+        <li class="" data-tooltip="3">
+          <a href="orders" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="active-tab" data-tooltip="0">
+          <a href="adminCatagory" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Catagory</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="#" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Help</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <h1 class="mb-3">Category Page</h1>
+
+    <!-- Form for adding a new category -->
+    <div class="input-group mb-3">
+        <input type="text" id="categoryInput" class="form-control" placeholder="Enter a new category">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="addCategory()">Add Category</button>
+        </div>
+    </div>
+
+    <!-- Display the list of categories -->
+    <h2>Categories</h2>
+    <ul id="categoryList" class="mb-4">
+        <!-- Categories will be displayed here -->
+    </ul>
+</div>
+
+<!-- JavaScript to handle adding and deleting categories -->
+<script>
+    // Array to store categories
+    let categories = [];
+
+    // Function to add a new category
+    function addCategory() {
+        const categoryInput = document.getElementById("categoryInput");
+        const categoryName = categoryInput.value.trim();
+        if (categoryName === "") return; // Don't add empty categories
+
+        categories.push(categoryName);
+        categoryInput.value = ""; // Clear the input field
+        displayCategories();
+    }
+
+    // Function to display categories
+    function displayCategories() {
+        const categoryList = document.getElementById("categoryList");
+        categoryList.innerHTML = ""; // Clear the list
+
+        categories.forEach((category, index) => {
+            const li = document.createElement("li");
+            li.className = "category-item list-group-item d-flex justify-content-between align-items-center";
+            li.textContent = category;
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "btn btn-danger btn-sm";
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = () => deleteCategory(index);
+            li.appendChild(deleteButton);
+            categoryList.appendChild(li);
+        });
+    }
+
+    // Function to delete a category
+    function deleteCategory(index) {
+        categories.splice(index, 1);
+        displayCategories();
+    }
+
+    // Display the initial list of categories
+    displayCategories();
+</script>
+    </main>
+    
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+</head>
+    <style>
+        body {
+            background-image: url('');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tab-pane.active {
+            background-color: rgb(223, 209, 209);
+            color: white;
+        }
+
+        .container {
+            
+            border-radius: 100rem; /* Add border-radius for the container */
+        }
+
+        .modal-content {
+            background-color: black;
+            color: white;
+        }
+
+        /* Sidebar styles */
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .sidenav a:hover {
+            color: #f2f2f2;
+        }
+        .table-bordered tbody tr {
+    border: 2px solid yellow; /* Set the border style and color */
+}
+
+/* Style for table cells (td) */
+.table-bordered td {
+    border-radius: 109px;
+    border: 2px solid yellow; /* Set the border style and color */
+    padding: 10px; /* Add some padding for better visual appearance */
+}
+.error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        /* Define a CSS class for small images */
+.small-image {
+    width: 11px;
+    height: auto;
+}
+
+    </style>
+
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide">Aqumex</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="#" class="active" data-="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Dashboard</span>
+          </a>
+        </li>
+        <li class="" data-tooltip="1">
+          <a href="users" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">USERS</span>
+          </a>
+        </li>
+        <li class="active-tab" data-tooltip="2">
+          <a href="product" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">PRODUCTS</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="orders" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <li class="tooltip-element" data-tooltip="0">
+            <a href="adminCatagory" data-active="4">
+              <div class="icon">
+                <i class='bx bx-notepad'></i>
+                <i class='bx bxs-notepad'></i>
+              </div>
+              <span class="link hide">Catagories</span>
+            </a>
+          </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="#" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Help</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <div class="container mt-5">
+      <h2 class="text-center">Update Product</h2>
+      <form id="updateForm" action="/admin/update/<%= product._id %>" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+              <label for="productImage">Product Image:</label>
+              <input min="4" multiple type="file" class="form-control-file" name="images" id="productImage" onchange="previewImages(event)">
+              <div id="imageError" class="error-message"></div>
+          </div>
+          <div id="imagePreview"></div>
+          <div class="product-images">
+              <h3>Product Images:</h3>
+              <div class="image-gallery">
+                  <% product.images.forEach((image) => { %>
+                      <img src="/images/<%= image %>" alt="Product Image" style="width: 125px; height: auto;">
+                  <% }); %>
+              </div>
+          </div>
+          <div id="displayImages"></div>
+  
+          <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>">
+              <div id="nameError" class="error"></div>
+          </div>
+  
+          <div class="form-group">
+            <!-- Assuming 'brands' is an array of objects with 'brandName' and '_id' properties -->
+            <label for="brand">Select Brand:</label>
+            <select class="form-control" value = "<%= product.brand %>" name="brand" id="brand" >
+                <option value="<%= product.brand %>">Select a brand(<%= product.brand %>)</option>
+                <% brands.forEach(brand => { %>
+                    <option value="<%= brand.brandName %>"><%= brand.brandName %></option>
+                <% }); %>
+            </select>
+            <div id="brandError" class="error-message"></div>
+        </div>
+  
+          <div class="form-group">
+              <label for="price">Price</label>
+              <input type="number" min="0" class="form-control" id="price" name="price" value="<%= product.price %>">
+              <div id="priceError" class="error"></div>
+          </div>
+  
+          <div class="form-group">
+              <label for="offer">Offer(optional):</label>
+              <input min="0" type="number" class="form-control" name="offer" id="offer" value="<%= product.offer %>">
+              <div id="offerError" class="error-message"></div>
+          </div>
+  
+          <div class="form-group">
+              <label for="discount">Discount</label>
+              <input min="0" type="number" class="form-control" name="discount" id="discount" value="<%= product.discount %>" disabled>
+              <div id="discountError" class="error-message"></div>
+          </div>
+  
+          <div class="form-group">
+            <label for="stocks">Stocks</label>
+            <input type="number" class="form-control" min="1" id="stocks" name="stocks" value="<%= product.stocks %>">
+            <div id="stocksError" class="error"></div>
+        </div>
+        
+  
+          <div class="form-group">
+              <label for="category">Category</label>
+              <input type="hidden" class="form-control" id="categorySelect" name="categorySelect" value="<%= product.category %>" disabled>
+              <div id="categoryError" class="error"></div>
+          </div>
+  
+          <div class="form-group">
+              <label for="updateCategory">Update Category:</label>
+              <select name="category" id="updateCategory" class="form-control">
+                  <% categories.forEach((category) => { %>
+                      <option value="<%= category.name %>"><%= category.name %></option>
+                  <% }); %>
+              </select>
+              <div id="updateCategoryError" class="error"></div>
+          </div>
+  
+          <button type="submit" class="btn btn-primary">Update Product</button>
+      </form>
+  </div>
+  <!-- JavaScript for form validation -->
+  <script>
+      document.getElementById('updateForm').addEventListener('submit', function (event) {
+          const nameValue = document.getElementById('name').value;
+          const brandValue = document.getElementById('brand').value;
+          const priceValue = document.getElementById('price').value;
+          const stocksValue = document.getElementById('stocks').value;
+          const categoryValue = document.getElementById('category').value;
+          const categorySelectValue = document.getElementById('categorySelect').value;
+  
+          let isValid = true;
+  
+          if (nameValue.trim() === '') {
+              document.getElementById('nameError').innerText = 'Name cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('nameError').innerText = '';
+          }
+  
+          if (brandValue.trim() === '') {
+              document.getElementById('brandError').innerText = 'Brand cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('brandError').innerText = '';
+          }
+  
+          if (priceValue.trim() === '') {
+              document.getElementById('priceError').innerText = 'Price cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('priceError').innerText = '';
+          }
+  
+          if (stocksValue.trim() === '') {
+              document.getElementById('stocksError').innerText = 'Stocks cannot empty';
+              isValid = false;
+          } else {
+              document.getElementById('stocksError').innerText = '';
+          }
+  
+          if (categoryValue.trim() === '') {
+              document.getElementById('categoryError').innerText = 'Category cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('categoryError').innerText = '';
+          }
+  
+          if (categorySelectValue.trim() === '') {
+              document.getElementById('categorySelectError').innerText = 'Please select a category';
+              isValid = false;
+          } else {
+              document.getElementById('categorySelectError').innerText = '';
+          }
+  
+          if (!isValid) {
+              event.preventDefault(); // Prevent form submission if validation fails
+          }
+      });
+  </script>
+  <script>
+    function previewImages(event) {
+    var preview = document.getElementById('imagePreview');
+    preview.innerHTML = ''; // Clear previous previews
+    
+    var files = event.target.files;
+
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var image = new Image();
+            image.src = e.target.result;
+
+            var imgContainer = document.createElement('div');
+            imgContainer.classList.add('image-container');
+
+            var img = document.createElement('img');
+            img.classList.add('preview-image');
+            img.src = image.src;
+            img.style.width = '150px'; // Set width (adjust as needed)
+            img.style.height = '150px'; // Set height (adjust as needed)
+
+            imgContainer.appendChild(img);
+            preview.appendChild(imgContainer);
+        }
+
+        reader.readAsDataURL(file);
+    }
+}
+
+  </script>
+  <script>
+    document.getElementById('showImagesButton').addEventListener('click', function () {
+        const input = document.getElementById('productImage');
+        const display = document.getElementById('displayImages');
+        
+        display.innerHTML = ''; // Clear previous images
+        
+        if (input.files && input.files.length > 0) {
+            for (let i = 0; i < input.files.length; i++) {
+                const reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100px'; // Adjust the size as needed
+                    img.style.height = '100px'; // Adjust the size as needed
+                    display.appendChild(img);
+                };
+                
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    });
+</script>
+
+  
+  <!-- Include necessary JavaScript libraries -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- JavaScript for form validation -->
+  <script>
+      document.getElementById('updateForm').addEventListener('submit', function (event) {
+          const nameValue = document.getElementById('name').value;
+          const brandValue = document.getElementById('brand').value;
+          const priceValue = document.getElementById('price').value;
+          const stocksValue = document.getElementById('stocks').value;
+          const categoryValue = document.getElementById('category').value;
+          const categorySelectValue = document.getElementById('categorySelect').value;
+  
+          let isValid = true;
+  
+          if (nameValue.trim() === '') {
+              document.getElementById('nameError').innerText = 'Name cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('nameError').innerText = '';
+          }
+  
+          if (brandValue.trim() === '') {
+              document.getElementById('brandError').innerText = 'Brand cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('brandError').innerText = '';
+          }
+  
+          if (priceValue.trim() === '') {
+              document.getElementById('priceError').innerText = 'Price cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('priceError').innerText = '';
+          }
+  
+          if (stocksValue.trim() === '') {
+              document.getElementById('stocksError').innerText = 'Stocks cannot  empty';
+              isValid = false;
+          } else {
+              document.getElementById('stocksError').innerText = '';
+          }
+  
+          if (categoryValue.trim() === '') {
+              document.getElementById('categoryError').innerText = 'Category cannot be empty';
+              isValid = false;
+          } else {
+              document.getElementById('categoryError').innerText = '';
+          }
+  
+          if (categorySelectValue.trim() === '') {
+              document.getElementById('categorySelectError').innerText = 'Please select a category';
+              isValid = false;
+          } else {
+              document.getElementById('categorySelectError').innerText = '';
+          }
+  
+          if (!isValid) {
+              event.preventDefault(); // Prevent form submission if validation fails
+          }
+      });
+  </script>
+  <script>
+    document.getElementById('updateForm').addEventListener('submit', function (event) {
+        const nameValue = document.getElementById('name').value;
+        const brandValue = document.getElementById('brand').value;
+        const priceValue = document.getElementById('price').value;
+        const stocksValue = document.getElementById('stocks').value;
+        const categoryValue = document.getElementById('category').value;
+        const categorySelectValue = document.getElementById('catagory').value; // corrected ID name
+  
+        let isValid = true;
+
+        // Validation for empty fields
+        if (nameValue.trim() === '') {
+            document.getElementById('nameError').innerText = 'Name cannot be empty';
+            isValid = false;
+        } else {
+            document.getElementById('nameError').innerText = '';
+        }
+
+        // (Similar validation for other fields...)
+
+        if (catagoryValue.trim() === '') {
+            document.getElementById('categoryError').innerText = 'Category cannot be empty';
+            isValid = false;
+        } else {
+            document.getElementById('categoryError').innerText = '';
+        }
+
+        if (categorySelectValue.trim() === '') {
+            document.getElementById('categorySelectError').innerText = 'Please select a category';
+            isValid = false;
+        } else {
+            document.getElementById('categorySelectError').innerText = '';
+        }
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+    });
+</script>
+<script>
+  document.getElementById('updateForm').addEventListener('submit', function(event) {
+      let name = document.getElementById('name').value.trim();
+      let brand = document.getElementById('brand').value.trim();
+      let price = document.getElementById('price').value.trim();
+      let offer = document.getElementById('offer').value.trim();
+      let stocks = document.getElementById('stocks').value.trim();
+      let category = document.getElementById('updateCategory').value.trim();
+
+      let nameError = document.getElementById('nameError');
+      let brandError = document.getElementById('brandError');
+      let priceError = document.getElementById('priceError');
+      let offerError = document.getElementById('offerError');
+      let stocksError = document.getElementById('stocksError');
+      let categoryError = document.getElementById('updateCategoryError');
+
+      let hasError = false;
+
+      // Check if fields are empty and show error messages
+      if (name === '') {
+          nameError.textContent = 'Name field cannot be empty';
+          hasError = true;
+      } else {
+          nameError.textContent = '';
+      }
+
+      if (brand === '') {
+          brandError.textContent = 'Please select a brand';
+          hasError = true;
+      } else {
+          brandError.textContent = '';
+      }
+
+      if (price === '') {
+          priceError.textContent = 'Price field cannot be empty';
+          hasError = true;
+      } else {
+          priceError.textContent = '';
+      }
+
+      // You can continue this pattern for other fields...
+
+      // Prevent form submission if there are errors
+      if (hasError) {
+          event.preventDefault();
+      }
+  });
+</script>
+<script>
+  document.getElementById('updateForm').addEventListener('submit', function(event) {
+      let stocksValue = document.getElementById('stocks').value.trim();
+      let stocksError = document.getElementById('stocksError');
+
+      // Check if Stocks field is empty or less than 1
+      if (stocksValue === '' || stocksValue < 1) {
+          stocksError.textContent = 'Please enter a valid stocks value (minimum is 1).';
+          event.preventDefault(); // Prevent form submission
+      } else {
+          stocksError.textContent = ''; // Clear error message
+      }
+  });
+</script>
+
+
+
+  
+  <!-- Include necessary JavaScript libraries -->
+
+  </main>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+ 
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI/tZ1iYU3pLjaUqZs3MBMxhTGrM4Ogqcy7RSqJZ8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-hSMmcPkEG/mI5C5G0Qix7X5zbL1NQ8pU8JiXbQQusuAkiqloTpgXQES5Df5Q9OUP"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!-- In your view (addresses.ejs) -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Addresses</title>
+</head>
+<body>
+    <h1>User Addresses</h1>
+    <ul>
+        <% addresses.forEach(address => { %>
+            <li>
+                <strong>State:</strong> <%= address.state %><br>
+                <strong>District:</strong> <%= address.district %><br>
+                <strong>Junction:</strong> <%= address.junction %><br>
+                <strong>Place:</strong> <%= address.place %><br>
+                <strong>Pincode:</strong> <%= address.pincode %><br>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

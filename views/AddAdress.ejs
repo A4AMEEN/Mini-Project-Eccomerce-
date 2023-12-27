@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+  <style>
+    /* Custom CSS for the profile page */
+    body {
+        background-color: #499ff4;
+    }
+
+    .profile-card {
+        background-color: #fff;
+        border: 1px solid #e1e1e1;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .profile-card h2 {
+        color: #333;
+    }
+
+    .btn-change-password {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-change-password:hover {
+        background-color: #0056b3;
+    }
+
+    .product-img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .order-status {
+        font-weight: bold;
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    /* Add the styles from the first HTML code here */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header,
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-info {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .order-history table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .order-history th,
+    .order-history td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .order-history th {
+        background-color: #f2f2f2;
+    }
+
+    .order-history tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .order-history tr:hover {
+        background-color: #ddd;
+    }
+
+    @media (max-width: 600px) {
+        .profile-info,
+        .order-history {
+            text-align: left;
+        }
+
+        .profile-info {
+            margin-bottom: 30px;
+        }
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .address-list {
+        max-width: 600px;
+        margin: 10px auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .address-list p {
+        margin: 0;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .address-section {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .address-section h4 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .address-list {
+        margin-top: 10px;
+    }
+
+    .address-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .address-card input {
+        margin-right: 10px;
+    }
+
+    .address-details {
+        flex-grow: 1;
+    }
+
+    .address-details div {
+        margin-bottom: 5px;
+    }
+</style>
+<style>
+    /* Add this CSS to style the elements */
+
+/* Style for the profile card */
+.profile-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form */
+#profile-form {
+    margin-top: 20px;
+}
+
+/* Style for buttons */
+.btn-warning {
+    margin-top: 10px;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+/* Style for the link inside the button */
+.btn-warning a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Style for input fields and labels */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+/* Center the profile card */
+.profile-card {
+    text-align: center;
+}
+
+</style>
+</head>
+
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide"><%= name %></h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="profile" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Profile</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="userorders" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <li class="active-tab" data-tooltip="2">
+          <a href="useraddress" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">Addresses</span>
+          </a>
+        </li>
+        <!-- <li class="orders" data-tooltip="3">
+          <a href="#" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li> -->
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="#" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Tasks</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="#" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Help</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>NAME</h3>
+            <h5><%= name %></h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show"><%= name %></span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <div class="container">
+        <h1 class="mt-5">Add Address</h1>
+        <form action="/addadress/<%= _id %>" method="POST" class="mt-4" onsubmit="return validateForm()">
+            <div class="mb-3">
+                <label for="state" class="form-label">State:</label>
+                <input type="text" id="state" name="state" class="form-control">
+                <div class="error-message" id="state-error"></div>
+            </div>
+    
+            <div class="mb-3">
+                <label for="district" class="form-label">District:</label>
+                <input type="text" id="district" name="district" class="form-control">
+                <div class="error-message" id="district-error"></div>
+            </div>
+    
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <input type="text" id="address" name="address" class="form-control">
+                <div class="error-message" id="address-error"></div>
+            </div>
+    
+            <div class="mb-3">
+                <label for="pincode" class="form-label">Pincode:</label>
+                <input type="number" id="pincode" name="pincode" class="form-control" pattern="\d{6}" min="100000" max="999999">
+                <div class="error-message" id="pincode-error"></div>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Add Address</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            var state = document.getElementById("state").value;
+            var district = document.getElementById("district").value;
+            var address = document.getElementById("address").value;
+            var pincode = document.getElementById("pincode").value;
+    
+            var stateError = document.getElementById("state-error");
+            var districtError = document.getElementById("district-error");
+            var addressError = document.getElementById("address-error");
+            var pincodeError = document.getElementById("pincode-error");
+    
+            stateError.innerHTML = "";
+            districtError.innerHTML = "";
+            addressError.innerHTML = "";
+            pincodeError.innerHTML = "";
+    
+            var isValid = true;
+    
+            if (state.trim() === "") {
+                stateError.innerHTML = "Please enter the state.";
+                isValid = false;
+            }
+    
+            if (district.trim() === "") {
+                districtError.innerHTML = "Please enter the district.";
+                isValid = false;
+            }
+    
+            if (address.trim() === "") {
+                addressError.innerHTML = "Please enter the address.";
+                isValid = false;
+            }
+    
+            var pincodePattern = /^\d{6}$/;
+            if (!pincodePattern.test(pincode)) {
+                pincodeError.innerHTML = "Please enter a valid pincode (6 digits).";
+                isValid = false;
+            }
+    
+            return isValid;
+        }
+    </script>
+
+</main>
+
+
+
+  <script src="app.js"></script>
+</body>
+
+</html>

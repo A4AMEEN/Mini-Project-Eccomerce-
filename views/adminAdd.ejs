@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+</head>
+    <style>
+        body {
+            background-image: url('');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tab-pane.active {
+            background-color: rgb(223, 209, 209);
+            color: white;
+        }
+
+        .container {
+            
+            border-radius: 100rem; /* Add border-radius for the container */
+        }
+
+        .modal-content {
+            background-color: black;
+            color: white;
+        }
+
+        /* Sidebar styles */
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f2f2f2;
+        }
+        .table-bordered tbody tr {
+    border: 2px solid yellow; /* Set the border style and color */
+}
+
+/* Style for table cells (td) */
+.table-bordered td {
+    border-radius: 109px;
+    border: 2px solid yellow; /* Set the border style and color */
+    padding: 10px; /* Add some padding for better visual appearance */
+}
+.error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide">Aqumex</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="#" class="active" data-="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Dashboard</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="brand" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Brands</span>
+          </a>
+        </li>
+        <li class="" data-tooltip="1">
+          <a href="users" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">USERS</span>
+          </a>
+        </li>
+        <li class="active-tab" data-tooltip="2">
+          <a href="product" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">PRODUCTS</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="orders" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <li class="tooltip-element" data-tooltip="0">
+            <a href="adminCatagory" data-active="4">
+              <div class="icon">
+                <i class='bx bx-notepad'></i>
+                <i class='bx bxs-notepad'></i>
+              </div>
+              <span class="link hide">Catagories</span>
+            </a>
+          </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="#" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Help</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <!-- <div class="form-container">
+      <button class="btn-success"><h3><a href="product">Back</a></h3></button>
+      <button class="btn-success"><h3><a href="users">Users</a></h3></button>
+      <button class="btn-success"><h3><a href="product">Products</a></h3></button> -->
+      <h2>Product Details</h2>
+      <form method="post" action="/admin/home" enctype="multipart/form-data" onsubmit="return validateForm()">
+          <!-- Add your product details here -->
+          <div class="form-group">
+            <label for="productImage">Product Image:</label>
+            <input min="4" multiple type="file" class="form-control-file" name="images" id="productImage" onchange="previewImages(event)">
+            <div id="imageError" class="error-message"></div>
+        </div>
+        <div id="imagePreview"></div>
+        
+          <div class="form-group">
+              <label for="productName">Product Name:</label>
+              <input type="text" class="form-control" name="name" placeholder="name" id="productName" >
+              <div id="productNameError" class="error-message"></div>
+          </div>
+          <div class="form-group">
+            <!-- Assuming 'brands' is an array of objects with 'brandName' and '_id' properties -->
+            <label for="brand">Select Brand:</label>
+            <select class="form-control" name="brand" id="brand" >
+                <option value="">Select a brand</option>
+                <% brands.forEach(brand => { %>
+                    <option value="<%= brand.brandName %>"><%= brand.brandName %></option>
+                <% }); %>
+            </select>
+            <div id="brandError" class="error-message"></div>
+        </div>
+        
+          <div class="form-group">
+              <label for="price">Price:</label>
+              <input min="1" type="number" class="form-control" name="price" id="price" >
+              <div id="priceError" class="error-message"></div>
+          </div>
+          <div class="form-group">
+            <label for="offer">Offer(optional):</label>
+            <input min="0" type="number" class="form-control" name="offer" id="offer">
+            <div id="offerError" class="error-message"></div>
+        </div>
+          <div class="form-group">
+              <label for="stocks">Stocks:</label>
+              <input min="1" type="number" class="form-control" name="stock1" id="stocks" >
+              <div id="stocksError" class="error-message"></div>
+          </div>
+          <div class="form-group">
+            <label for="catagory">Category:</label>
+            <select name="catagory" id="catagory" class="form-control">
+                <% categories.forEach((category) => { %>
+                    <option value="<%= category.name %>"><%= category.name %></option>
+                <% }); %>
+            </select>
+            <div id="categoryError" class="error-message"></div>
+        </div>
+
+          <button type="submit" class="btn btn-secondary" onclick="validateForm()">Add Product</button>
+
+          <a href="product"><button type="button" class="btn btn-danger">Close</button></a>
+      </form>
+  </div>
+  <script>
+    function previewImages(event) {
+    var preview = document.getElementById('imagePreview');
+    preview.innerHTML = ''; // Clear previous previews
+    
+    var files = event.target.files;
+
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var image = new Image();
+            image.src = e.target.result;
+
+            var imgContainer = document.createElement('div');
+            imgContainer.classList.add('image-container');
+
+            var img = document.createElement('img');
+            img.classList.add('preview-image');
+            img.src = image.src;
+            img.style.width = '150px'; // Set width (adjust as needed)
+            img.style.height = '150px'; // Set height (adjust as needed)
+
+            imgContainer.appendChild(img);
+            preview.appendChild(imgContainer);
+        }
+
+        reader.readAsDataURL(file);
+    }
+}
+
+  </script>
+
+  <script>
+    function validateForm() {
+        var productName = document.getElementById("productName").value;
+        var brand = document.getElementById("brand").value;
+        var price = document.getElementById("price").value;
+        var stocks = document.getElementById("stocks").value;
+        var category = document.getElementById("catagory").value; // Corrected the ID here
+        var productImage = document.getElementById("productImage").value; // Added this line
+
+        var isValid = true;
+
+        // Check if the product name is empty
+        if (productName.trim() === "") {
+            document.getElementById("productNameError").innerHTML = "Please enter a valid product name.";
+            isValid = false;
+        } else {
+            document.getElementById("productNameError").innerHTML = ""; // Clear error message
+        }
+
+        // Check if the brand is empty
+        if (brand.trim() === "") {
+            document.getElementById("brandError").innerHTML = "Please enter a valid brand.";
+            isValid = false;
+        } else {
+            document.getElementById("brandError").innerHTML = ""; // Clear error message
+        }
+
+        // Check if the price is empty or not a positive number
+        if (price.trim() === "" || isNaN(price) || parseFloat(price) <= 0) {
+            document.getElementById("priceError").innerHTML = "Please enter a valid price.";
+            isValid = false;
+        } else {
+            document.getElementById("priceError").innerHTML = ""; // Clear error message
+        }
+
+        // Check if the stocks is empty or not a positive number
+        if (stocks.trim() === "" || isNaN(stocks) || parseFloat(stocks) <= 0) {
+            document.getElementById("stocksError").innerHTML = "Please enter a valid stock quantity.";
+            isValid = false;
+        } else {
+            document.getElementById("stocksError").innerHTML = ""; // Clear error message
+        }
+
+        // Check if the category is selected
+        if (category.trim() === "") {
+            document.getElementById("categoryError").innerHTML = "Please select a category.";
+            isValid = false;
+        } else {
+            document.getElementById("categoryError").innerHTML = ""; // Clear error message
+        }
+
+        // Check if the product image is selected
+        if (productImage.trim() === "") {
+            document.getElementById("imageError").innerHTML = "Please select a product image.";
+            isValid = false;
+        } else {
+            document.getElementById("imageError").innerHTML = ""; // Clear error message
+        }
+
+        // If any field is not valid, prevent form submission
+        if (!isValid) {
+            return false;
+        }
+
+        return true; // Allow form submission
+    }
+</script>
+
+
+    
+
+ 
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI/tZ1iYU3pLjaUqZs3MBMxhTGrM4Ogqcy7RSqJZ8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-hSMmcPkEG/mI5C5G0Qix7X5zbL1NQ8pU8JiXbQQusuAkiqloTpgXQES5Df5Q9OUP"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

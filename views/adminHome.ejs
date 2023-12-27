@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+
+
+<head>
+    <title>Admin Panel</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/images/login.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tab-pane.active {
+            background-color: rgb(223, 209, 209);
+            color: white;
+        }
+
+        .modal-content {
+            background-color: black;
+            color: white;
+        }
+
+        /* Sidebar styles */
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    
+
+    <div class="container mt-5">
+
+        <!-- Admin Panel Header with Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#"><h2>Admin Dashboard</h2></a>
+
+                <!-- Logout Button (Top-right corner) -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/admin/logout" class="btn btn-danger mt-2">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+         <ul class="nav nav-tabs bg-dark">
+    <li class="nav-item">
+        <a class="nav-link text-red" data-toggle="tab" href="#users"><strong>Users</strong></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active text-red" data-toggle="tab" href="#products"><strong>Products</strong></a>
+    </li>
+    <!-- <li class="nav-item">
+        <a class="nav-link text-light" data-toggle="" href="order"><strong>Orders</strong></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" data-toggle="tab" href="#categories"><strong>Categories</strong></a>
+    </li> -->
+</ul>
+<div class="container mt-2">
+    <ul class="nav nav-tabs bg-dark justify-content-end">
+        <li class="">
+            <a class=" text-dark" data-toggle="" href="order">
+                <div class="card">
+                    <div class="card-body">
+                        <strong>Orders</strong>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class=" text-dark" data-toggle="tab" href="categories">
+                <div class="card">
+                    <div class="card-body">
+                        <strong>Categories</strong>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+    
+
+
+    
+
+
+        <!-- Tab panes for categories -->
+        <div class="tab-content mt-3">
+            <!-- Users category -->
+            <div class="tab-pane" id="users">
+                <!-- Table to display user information -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email (Gmail)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user)=>{ %>
+                            <tr>
+                                <td>
+                                    <%= user.name %>
+                                </td>
+                                <td>
+                                    <%= user.email %>
+                                </td>
+                                <td>
+                                    <% if(!user.isblocked){ %>
+                                        <a href="/admin/block/<%= user._id %>"><button
+                                                class="btn btn-danger">Block</button></a>
+                                        <% } else if (user.isblocked) { %>
+                                            <a href="/admin/unblock/<%= user._id %>"><button
+                                                    class="btn btn-success">Unblock</button></a>
+                                            <% } %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <!-- Add more rows for other users -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Products category (you can add product-related content here) -->
+                    <!-- Add product-related content here -->
+                    <div class="tab-pane active" id="products">
+                        <div class="container mt-4">
+                            <!-- Add product-related content here -->
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Item No</th>
+                                        <th>Images</th>
+                                        <th>Product Name</th>
+                                        <th>Brands</th>
+                                        <th>Price</th>
+                                        <th>Stocks</th>
+                                        <th>Catagory</th>
+                                        <th>Delete</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+
+                                
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#productModal">
+                                    ADD Product
+                                </button>
+                                <tbody>
+
+                                    <!-- Add your product rows here as table rows -->
+                                    <% products.forEach((product, index)=>{ %>
+                                        <tr>
+                                            <td>
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <% console.log(product.images) %>;
+                                                <img src="/images/<%= product.images[0] %>" alt="" width="120px" height="150px">
+                                            <td>
+                                                <%= product.name %>
+                                            </td>
+                                            <td>
+                                                <%= product.brand %>
+                                            </td>
+                                            <td>
+                                                <%= product.price %>&#8377 
+                                            </td>
+                                            <td>
+                                                <%= product.stocks %>
+                                            </td>
+                                            <td>
+                                                <%=product.catagory %>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/delete/<%= product._id %>" class="btn btn-danger">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/edit/<%= product._id %>" class="btn btn-danger">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                            <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+                        aria-labelledby="productModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+
+                                <form method="post" action="/admin/product" class="modal-body" enctype="multipart/form-data" style="background-color: white; color: black;">
+                                    <!-- Add your product details here -->
+                                    <div class="form-group">
+                                        <label for="productImage" >Product Image:</label>
+                                        <input min="4" multiple type="file" class="form-control-file" name="images" id="productImage" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="productName" style="color: wheat;">Product Name:</label>
+                                        <input type="text" class="form-control" name="name" placeholder="name"
+                                            id="productName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="brand" style="color: wheatj">Brand:</label>
+                                        <input type="text" class="form-control" name="brand" id="brand" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price" style="color: wheat">Price:</label>
+                                        <input min="1" type="number" class="form-control" name="price" id="price" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stocks" style="color: wheat">Stocks:</label>
+                                        <input min="1" type="number" class="form-control" name="stock1" id="stocks" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category" style="color: wheat">Catagory:</label>
+                                        <select name="catagory" id="catagory" class="form-control" required>
+                                          <option value="Casuals">Casuals</option>
+                                          <option value="Formals">Formals</option>
+                                          <option value="Offroads">Offroads</option>
+                                          <option value="Spikes">Spikes</option>
+                                          <option value="Boots">Boots</option>
+                                        </select>
+                                      </div>
+                                      
+                                    <button type="submit" class="btn btn-secondary">Add Product</button>
+                                </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <!-- You can add an "Add" button here if needed -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="categories">
+                        <!-- Table to display category information -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loop through categories -->>
+                             
+                                <!-- Add more rows for other categories -->
+                            </tbody>
+                        </table>
+                    </div>
+                
+            
+
+
+                    
+
+
+                    <!-- JavaScript to populate modal data -->
+                    <script>
+                        // JavaScript code to handle form submission and display results
+                        document.getElementById("saveButton").addEventListener("click", function () {
+                            const productName = document.getElementById("productName").value;
+                            const productPrice = document.getElementById("productPrice").value;
+                            const productCategory = document.getElementById("productCatagory").value;
+                            const productBrand = document.getElementById("productBrand").value;
+
+                            // You can send this data to a server for saving, or display it here
+                            const resultDiv = document.getElementById("result");
+                            resultDiv.innerHTML = `
+                <h2>Edited Product Details:</h2>
+                <p>Name: ${productName}</p>
+                <p>Price: $${productPrice}</p>
+                <p>Category: ${productCatagory}</p>
+                <p>Brand: ${productBrand}</p>
+                <!-- Display other product details here -->
+            `;
+                        });
+                    </script>
+</body>
+
+</html>
+
+
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

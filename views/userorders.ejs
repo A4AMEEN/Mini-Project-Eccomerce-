@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/adminstyle.css">
+  <style>
+    /* Custom CSS for the profile page */
+    body {
+        background-color: #499ff4;
+    }
+
+    .profile-card {
+        background-color: #fff;
+        border: 1px solid #e1e1e1;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .profile-card h2 {
+        color: #333;
+    }
+
+    .btn-change-password {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-change-password:hover {
+        background-color: #0056b3;
+    }
+
+    .product-img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .order-status {
+        font-weight: bold;
+    }
+
+    /* Add the styles from the first HTML code here */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    /* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th, .table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+.table img {
+  max-width: 40px;
+  height: auto;
+}
+
+
+    header,
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-info {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    /* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.modal-buttons button {
+    margin: 0 5px;
+}
+
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .order-history table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .order-history th,
+    .order-history td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .order-history th {
+        background-color: #f2f2f2;
+    }
+
+    .order-history tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .order-history tr:hover {
+        background-color: #ddd;
+    }
+
+    @media (max-width: 600px) {
+        .profile-info,
+        .order-history {
+            text-align: left;
+        }
+
+        .profile-info {
+            margin-bottom: 30px;
+        }
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .address-list {
+        max-width: 600px;
+        margin: 10px auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .address-list p {
+        margin: 0;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .address-section {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .address-section h4 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .address-list {
+        margin-top: 10px;
+    }
+
+    .address-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .address-card input {
+        margin-right: 10px;
+    }
+
+    .address-details {
+        flex-grow: 1;
+    }
+
+    .address-details div {
+        margin-bottom: 5px;
+    }
+</style>
+<style>
+    /* Add this CSS to style the elements */
+
+/* Style for the profile card */
+.profile-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form */
+#profile-form {
+    margin-top: 20px;
+}
+
+/* Style for buttons */
+.btn-warning {
+    margin-top: 10px;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+/* Style for the link inside the button */
+.btn-warning a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Style for input fields and labels */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+/* Center the profile card */
+.profile-card {
+    text-align: center;
+}
+
+</style>
+</head>
+
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="./img/logo.png" class="logo" alt="">
+      <h3 class="hide"><%= name %></h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class=""></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="profile" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Profile</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="userorders" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li>
+        <li class="active-tab" data-tooltip="2">
+          <a href="useraddress" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">Addresses</span>
+          </a>
+        </li>
+        <!-- <li class="orders" data-tooltip="3">
+          <a href="#" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">ORDERS</span>
+          </a>
+        </li> -->
+        <div class="tooltip">
+          <span class="show">Dashboard</span>
+          <span>Projects</span>
+          <span>Messages</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="wallet" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Wallet History</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="#" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Help</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Settings</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Tasks</span>
+          <span>Help</span>
+          <span>Settings</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>NAME</h3>
+            <h5><%= name %></h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show"><%= name %></span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <	<div class="container mt-5">
+			<h1 class="mb-4">Your Orders</h1>
+			<% if (orders.length > 0) { %>
+			  <table class="table table-bordered">
+				<thead>
+				  <tr>
+					<th>Item</th>
+					<th>Item Name</th>
+					<th>Total Price</th>
+					<th>Total Quantity</th>
+					<th>Delivery Status</th>
+					<th>Actions</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<% for (let i = orders.length - 1; i >= 0; i--) { %>
+                    <% const order = orders[i]; %>
+                    <% order.items.forEach(item => { %>
+							<tr>
+								<td>
+									<a href="/ordetail/<%= order._id %>">
+										<img src="/images/<%= item.images[0] %>" class="img-fluid" style="max-width: 40px;" alt="<%= item.productName %>">
+									</a>
+								</td>
+								
+								<a href="/ordetails/<%= order._id %>"></a>
+                <td><%= item.productName %></td>
+								<td>&#8377 <%= item.price * item.quantity %></td>
+								<td><%= item.quantity %></td>
+								<td>
+    <p><%= item.deliveryStatus %></p>
+</td>
+<td>
+    <% if (item.deliveryStatus === 'Delivered') { %>
+        <form id="returnOrderForm_<%= item._id %>" action="/return-item/<%= order._id %>" method="POST">
+            <input type="hidden" name="itemId" value="<%= item._id %>">
+            <button type="button" class="btn btn-warning" onclick="showReturnConfirmation('<%= item._id %>')">Return Order</button>
+            <div class="confirmation-modal" id="returnModal_<%= item._id %>" style="display: none;">
+                <div class="confirmation-content">
+                    <p>Select return reason:</p>
+                    <select name="returnReason" id="returnReason_<%= item._id %>">
+                        <option value="Wrong Item">Wrong Item</option>
+                        <option value="Item Damaged">Item Damaged</option>
+                        <!-- Add other reasons as needed -->
+                    </select>
+                    <button type="button" class="btn btn-warning" onclick="confirmReturn('<%= item._id %>')">Confirm Return</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelReturn('<%= item._id %>')">Cancel</button>
+                </div>
+            </div>
+        </form>
+    <% } else if (item.deliveryStatus === 'Returned') { %>
+		<form id="cancelOrderForm_<%= item._id %>" action="/returnr-itemm/<%= order._id %>" method="POST">
+            <input type="hidden" name="itemId" value="<%= item._id %>">
+			<h4>Item Returned</h4>
+			
+            <button type="button" class="btn btn-danger" onclick="showCancelConfirmation('<%= item._id %>')">Cancel Order</button>
+            <div class="confirmation-modal" id="cancelModal_<%= item._id %>" style="display: none;">
+                <div class="confirmation-content">
+                    <p>Are you sure you want to cancel the order?</p>
+                    <button type="button" class="btn btn-danger" onclick="confirmCancel('<%= item._id %>')">Yes</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelCancel('<%= item._id %>')">No</button>
+                </div>
+            </div>
+        </form>
+    <% }
+	else if (item.deliveryStatus === 'Cancelled') { %>
+		<form id="cancelOrderForm_<%= item._id %>" action="/returnr-itemm/<%= order._id %>" method="POST">
+            <input type="hidden" name="itemId" value="<%= item._id %>">
+			<h4>Item Cancelled</h4>
+			
+            <button type="button" class="btn btn-danger" onclick="showCancelConfirmation('<%= item._id %>')">Remove</button>
+            <div class="confirmation-modal" id="cancelModal_<%= item._id %>" style="display: none;">
+                <div class="confirmation-content">
+                    <p>Are you sure you want to cancel the order?</p>
+                    <button type="button" class="btn btn-danger" onclick="confirmCancel('<%= item._id %>')">Yes</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelCancel('<%= item._id %>')">No</button>
+                </div>
+            </div>
+        </form>
+    <% } else { %>
+        <form id="cancelOrderForm_<%= item._id %>" action="/remove-itemm/<%= order._id %>" method="POST">
+            <input type="hidden" name="itemId" value="<%= item._id %>">
+            <button type="button" class="btn btn-danger" onclick="showCancelConfirmation('<%= item._id %>')">Cancel Order</button>
+            <div class="confirmation-modal" id="cancelModal_<%= item._id %>" style="display: none;">
+                <div class="confirmation-content">
+                    <p>Are you sure you want to cancel the order?</p>
+                    <button type="button" class="btn btn-danger" onclick="confirmCancel('<%= item._id %>')">Yes</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelCancel('<%= item._id %>')">No</button>
+                </div>
+            </div>
+        </form>
+    <% } %>
+</td>
+
+							</tr>
+							
+						
+					
+					<script>
+						function showReturnConfirmation(itemId) {
+							document.getElementById('returnModal_' + itemId).style.display = 'block';
+						}
+					
+						function confirmReturn(itemId) {
+							const reason = document.getElementById('returnReason_' + itemId).value;
+							document.getElementById('returnOrderForm_' + itemId).submit();
+							// Here, you can send the reason along with the form submission using AJAX if needed
+						}
+					
+						function cancelReturn(itemId) {
+							document.getElementById('returnModal_' + itemId).style.display = 'none';
+						}
+					
+						function showCancelConfirmation(itemId) {
+							document.getElementById('cancelModal_' + itemId).style.display = 'block';
+						}
+					
+						function confirmCancel(itemId) {
+							document.getElementById('cancelOrderForm_' + itemId).submit();
+						}
+					
+						function cancelCancel(itemId) {
+							document.getElementById('cancelModal_' + itemId).style.display = 'none';
+						}
+					</script>
+					
+							<style>
+								.confirmation-modal {
+									display: none;
+									position: fixed;
+									top: 50%;
+									left: 50%;
+									transform: translate(-50%, -50%);
+									background-color: rgba(0, 0, 0, 0.6);
+									width: 100%;
+									height: 100%;
+									z-index: 9999;
+								}
+							
+								.confirmation-content {
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									transform: translate(-50%, -50%);
+									background-color: white;
+									padding: 20px;
+									text-align: center;
+								}
+							</style>
+							
+							<script>
+								function showConfirmation() {
+									document.querySelector('.confirmation-modal').style.display = 'block';
+								}
+							
+								document.getElementById('confirmYes').addEventListener('click', function () {
+									console.log("User clicked OK. Submitting form...");
+									document.getElementById('cancelOrderForm').submit();
+									document.querySelector('.confirmation-modal').style.display = 'none';
+								});
+							
+								document.getElementById('confirmNo').addEventListener('click', function () {
+									console.log("User clicked Cancel. Form not submitted.");
+									document.querySelector('.confirmation-modal').style.display = 'none';
+								});
+							</script>
+							
+
+
+						  
+						</td>
+					  </tr>
+					<% }) %>
+				  <% } %>
+				</tbody>
+			  </table>
+			<% } else { %>
+			  <td>You haven't placed any orders yet.</td>
+			<% } %>
+		  </div>
+
+  </div>
+  
+  
+</main>
+
+
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /* Custom CSS for the profile page */
+        body {
+            background-color: #499ff4;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            border: 1px solid #e1e1e1;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .profile-card h2 {
+            color: #333;
+        }
+
+        .btn-change-password {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-change-password:hover {
+            background-color: #0056b3;
+        }
+
+        .product-img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .order-status {
+            font-weight: bold;
+        }
+
+        /* Add the styles from the first HTML code here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header,
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .order-history table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-history th,
+        .order-history td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .order-history th {
+            background-color: #f2f2f2;
+        }
+
+        .order-history tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .order-history tr:hover {
+            background-color: #ddd;
+        }
+
+        @media (max-width: 600px) {
+            .profile-info,
+            .order-history {
+                text-align: left;
+            }
+
+            .profile-info {
+                margin-bottom: 30px;
+            }
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .address-list {
+            max-width: 600px;
+            margin: 10px auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .address-list p {
+            margin: 0;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .address-section {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .address-section h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .address-list {
+            margin-top: 10px;
+        }
+
+        .address-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .address-card input {
+            margin-right: 10px;
+        }
+
+        .address-details {
+            flex-grow: 1;
+        }
+
+        .address-details div {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="profile-card">
+                    <h2 class="text-center mb-4"><%= name %>" Profile</h2>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" value="<%= name %>" disabled>
+                            </div>
+                        </div>
+                        <div class="modal-header">
+                            <button type="button" class="btn btn-warning">
+                                <a href="/changename" class="modal-title text-white" style="text-decoration: none;">Update Username</a>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" value="<%= email %>">
+                        </div>
+                        <div class="modal-header">
+                            <button type="button" class="btn btn-warning">
+                                <a href="/changepassword" class="modal-title text-white" style="text-decoration: none;">Change Password</a>
+                            </button>
+                        </div>
+                        <div class="modal-header">
+                            <button type="button" class="btn btn-success">
+                                <a href="/addadress" class="modal-title text-white" style="text-decoration: none;">Add Adress</a>
+                            </button>
+                        </div>
+                      
+                                <div class="address-dropdown">
+                                    <ul>
+                                        <% addresses.forEach(address => { %>
+                                            <li><%= address.state %>, <%= address.district %> <%= address.place %>,<%= address.junction %> Pincode<%= address.pincode %>,</li>
+                                                                            
+                                    <% }); %>
+                                </div>
+                            </div>
+                            
+                            <!-- Bootstrap Modal for Address Input -->
+                            <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addressModalLabel">Add New Address</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Address input form can be added here -->
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="state">State</label>
+                                                    <input type="text" class="form-control" id="state"required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="district">District</label>
+                                                    <input type="text" class="form-control" id="district"required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="junction">Junction</label>
+                                                    <input type="text" class="form-control" id="junction"required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="place">Place</label>
+                                                    <input type="text" class="form-control" id="place"required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pincode">Pincode</label>
+                                                    <input type="text" class="form-control" id="pincode"required>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Save Address</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                    <li><a href="/logout" class="btn btn-danger">Logout</a></li>
+
+                    <!-- Orders List -->
+                    
+
+    <!-- Change Password Modal -->
+    
+    
+    <script>
+        $(document).ready(function(){
+            $("#add-address-btn").click(function(){
+                // Code to handle the click event
+            });
+        });
+        </script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

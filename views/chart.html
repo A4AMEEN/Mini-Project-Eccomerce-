@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Report Bar Chart</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Sales Report Bar Chart</h1>
+  <div class="simple-bar-chart" id="salesBarChart">
+    <% Object.entries(salesData).forEach(([productId, quantity]) => { %>
+      <div class="item" style="--val: <%= quantity %>">
+        <div class="label">Product <%= productId %></div>
+        <div class="value"><%= quantity %></div>
+      </div>
+    <% }); %>
+  </div>
+
+  <script>
+    // This is an example to demonstrate dynamically updating the CSS bar chart
+    // For more complex charts, consider using a dedicated charting library like Chart.js
+    const salesData = <%= JSON.stringify(salesData) %>; // Assuming salesData is an object with productId as key and quantity as value
+
+    // Iterate through salesData and update --clr dynamically based on quantity
+    const items = document.querySelectorAll('.simple-bar-chart .item');
+    items.forEach((item, index) => {
+      const quantity = parseFloat(item.style.getPropertyValue('--val'));
+      const percentage = (quantity / 100) * 255; // Calculate percentage for color gradient
+
+      // Update color dynamically based on quantity (this is a simple example)
+      item.style.setProperty('--clr', `rgb(${percentage}, ${255 - percentage}, 100)`);
+    });
+  </script>
+</body>
+</html>

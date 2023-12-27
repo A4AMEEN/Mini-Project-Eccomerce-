@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Orders</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Add any custom styles here */
+    body {
+  background-image: url('/images/sincerely-media-JMUIJaZllUs-unsplash.jpg'); /* Replace with the path to your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Ensure the full viewport height is covered */
+}
+
+.container {
+      background-color: rgba(255, 255, 255, 0.8); /* Adjust the last value for opacity */
+      padding: 20px;
+      border-radius: 10px; /* Optional: Add border radius for a nicer look */
+      color: #000; /* Adjust text color for better visibility on the background image */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="mb-4">Admin Orders</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>UserName</th>
+        <th>UserEmail</th>
+        <th>Item</th>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>Item Quantity</th>
+        <th>Delivery Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach(order => { %>
+        <% order.items.forEach(item => { %>
+          <tr>
+            <td><%= order._id %></td>
+            <td><%= order.userId.name %></td>
+            <td><%= order.userId.email %></td>
+            <td>
+              <img src="/images/<%= item.images[0] %>" class="img-fluid" style="max-width: 80px;" alt="<%= item.productName %>">
+            </td>
+            <td><%= item.productName %></td>
+            <td>&#8377 <%= item.price * item.quantity %></td>
+            <td><%= item.quantity %></td>
+            <td>
+              <form action="/admin/update-status/<%= order._id %>" method="POST">
+                <input type="hidden" name="itemId" value="<%= item._id %>">
+                <select name="deliveryStatus" class="form-control">
+                  <option value="Pending" <%= (item.deliveryStatus === 'Pending') ? 'selected' : '' %>>Pending</option>
+                  <option value="Shipped" <%= (item.deliveryStatus === 'Shipped') ? 'selected' : '' %>>Shipped</option>
+                  <option value="Delivered" <%= (item.deliveryStatus === 'Delivered') ? 'selected' : '' %>>Delivered</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-2">Update</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sport Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css ">
+    <style>
+        body {
+            background-image: url('public/images/deepal-tamang--aMhLQwGd2g-unsplash.jpg');
+            /* Path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('images/deepal-tamang--aMhLQwGd2g-unsplash.jpg'); /* Add your background image here */
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            height: 100vh;
+        }
+        
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+            backdrop-filter: blur(5px); /* Apply a 5px blur */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF5722;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #E64A19;
+        }
+
+        .form-group .register-link {
+            text-align: center;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .form-group .register-link a {
+            color: #FF5722;
+            text-decoration: none;
+        }
+    </style>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input value="mugeshtn07@gmail.com" type="email" id="email" name="email">
+                <div id="emailMessage" class="alert-message" style="color: red; font-weight: bold;">
+                    <%= message %>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" value="user123">
+                <div id="passwordMessage" class="alert-message" style="color: red; font-weight: bold;">
+                    <%= message %>
+                </div>
+            </div>
+            
+            
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+            <div id="error" style="color: red; font-weight: bold;"></div>
+            <div class="form-group register-link">
+                Don't have an account? <a href="/signup">Register here</a>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        function validateForm() {
+            var emailInput = document.getElementById('email');
+            var emailMessage = document.getElementById('emailMessage');
+            var passwordInput = document.getElementById('password');
+            var passwordMessage = document.getElementById('passwordMessage');
+            var email = emailInput.value.trim();
+            var password = passwordInput.value.trim();
+    
+            if (email === '') {
+                emailMessage.textContent = 'Please enter an email address.';
+                emailInput.focus();
+                return false; // Prevent form submission
+            } else {
+                emailMessage.textContent = ''; // Clear the error message if email is not empty
+            }
+    
+            if (password === '') {
+                passwordMessage.textContent = 'Please enter a password.';
+                passwordInput.focus();
+                return false; // Prevent form submission
+            } else {
+                passwordMessage.textContent = ''; // Clear the error message if password is not empty
+            }
+    
+            return true; // Allow form submission if both fields are filled
+        }
+    </script>
+    
+</body>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const error = document.getElementById('error');
+            
+            form.addEventListener('submit', function(event) {
+                let array = [];
+                // Prevent the form from submitting if validation fails
+                if (!validateForm()) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateForm() {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                let isValid = true;
+
+                // Simple email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    array.push('Please enter a valid email address');
+                    isValid = false;
+                }else if (password.length < 6) {
+                    array.push('Password must be at least 6 characters long');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            if(array.length > 0){
+                e.preventDefault();
+                error.textContent = array.join(',')
+            }else{
+                error.textContent = '';
+            }
+        });
+    </script>
+    <script>
+        // Assuming this is where you check the password validity
+if (passwordIsIncorrect) {
+    document.getElementById("passwordMessage").innerText = "Invalid password";
+    // You can also trigger a visual indication, like changing the border color of the input field to red
+    document.getElementById("password").style.borderColor = "red";
+} else {
+    // Clear the error message and reset styles if the password is correct
+    document.getElementById("passwordMessage").innerText = "";
+    document.getElementById("password").style.borderColor = ""; // Reset to default
+}
+
+    </script>
+</html>
